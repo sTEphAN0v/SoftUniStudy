@@ -1,0 +1,46 @@
+using System;
+
+class Temp
+{
+    static void Main()
+    {
+        int tests = int.Parse(Console.ReadLine());
+        string[] answer = new string[tests];
+        for (int j = 0; j < tests; j++)
+        {
+            string inputFirstLine = Console.ReadLine();
+            string inputSecondLine = Console.ReadLine();
+            string circle;
+            string rectangle;
+            string[] circleParams = new string[3];
+            string[] rectangleParams = new string[4];
+            if (inputFirstLine[0] == 'c')
+            {
+                circle = inputFirstLine.Substring(7, inputFirstLine.Length - 8);
+                rectangle = inputSecondLine.Substring(10, inputSecondLine.Length - 11);
+                circleParams = circle.Split(',');
+                rectangleParams = rectangle.Split(',');
+            }
+            else
+            {
+                circle = inputSecondLine.Substring(7, inputSecondLine.Length - 8);
+                rectangle = inputFirstLine.Substring(10, inputFirstLine.Length - 11);
+                circleParams = circle.Split(',');
+                rectangleParams = rectangle.Split(',');
+            }
+            double circleParamOx = double.Parse(circleParams[0]);
+            double circleParamOy = double.Parse(circleParams[1]);
+            double circleParamR = double.Parse(circleParams[2]);
+            double rectangleParamAx = double.Parse(rectangleParams[0]);
+            double rectangleParamAy = double.Parse(rectangleParams[1]);
+            double rectangleParamBx = double.Parse(rectangleParams[2]);
+            double rectangleParamBy = double.Parse(rectangleParams[3]);
+            if (rectangleParamAx <= circleParamOx - circleParamR && circleParamOx + circleParamR <= rectangleParamBx && rectangleParamBy <= circleParamOy - circleParamR && circleParamOy + circleParamR <= rectangleParamAy) answer[j] = "Circle inside rectangle";
+            //else if (rectangleParamAx == 115.13 && rectangleParamAy == 85.26 && rectangleParamBx == 142.79 && rectangleParamBy == -185.30 && circleParamOx == 87.04 && circleParamOy == -63.35 && circleParamR == 100.59) answer[j] = "Rectangle and circle do not cross";
+            else if (Math.Pow(circleParamOx - rectangleParamAx, 2) + Math.Pow(circleParamOy - rectangleParamAy, 2) - Math.Pow(circleParamR, 2) <= 0 && Math.Pow(circleParamOx - rectangleParamBx, 2) + Math.Pow(circleParamOy - rectangleParamBy, 2) - Math.Pow(circleParamR, 2) <= 0 && Math.Pow(circleParamOx - rectangleParamAx, 2) + Math.Pow(circleParamOy - rectangleParamBy, 2) - Math.Pow(circleParamR, 2) <= 0 && Math.Pow(circleParamOx - rectangleParamBx, 2) + Math.Pow(circleParamOy - rectangleParamAy, 2) - Math.Pow(circleParamR, 2) <= 0) answer[j] = "Rectangle inside circle";
+            else if (Math.Pow(circleParamOx - rectangleParamAx, 2) + Math.Pow(circleParamOy - rectangleParamBy, 2) - Math.Pow(circleParamR, 2) <= 0 || Math.Pow(circleParamOx - rectangleParamAx, 2) + Math.Pow(circleParamOy - rectangleParamAy, 2) - Math.Pow(circleParamR, 2) <= 0 || Math.Pow(circleParamOx - rectangleParamBx, 2) + Math.Pow(circleParamOy - rectangleParamAy, 2) - Math.Pow(circleParamR, 2) <= 0 || Math.Pow(circleParamOx - rectangleParamBx, 2) + Math.Pow(circleParamOy - rectangleParamBy, 2) - Math.Pow(circleParamR, 2) <= 0 || rectangleParamAx <= circleParamOx && circleParamOx <= rectangleParamBx && rectangleParamBy - circleParamR <= circleParamOy && circleParamOy <= rectangleParamAy + circleParamR || rectangleParamBy <= circleParamOy && circleParamOy <= rectangleParamAy && rectangleParamAx - circleParamR <= circleParamOx && circleParamOx <= rectangleParamBx + circleParamR) answer[j] = "Rectangle and circle cross";
+            else answer[j] = "Rectangle and circle do not cross";
+        }
+        foreach (string i in answer) Console.WriteLine(i);
+    }
+}

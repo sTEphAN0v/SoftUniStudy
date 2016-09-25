@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+class Temp
+{
+    static void Main()
+    {
+        string string1 = Console.ReadLine();
+        string string2 = Console.ReadLine();
+        int D = 0;
+        int H = 0;
+        int M = 0;
+        string[] splitedString1 = string1.Split (':');
+        string[] splitedString2 = string2.Split (':');
+        if (splitedString1.Length == 4)
+        {
+            D = int.Parse(splitedString1[0]);
+            H = int.Parse(splitedString1[2]);
+            M = int.Parse(splitedString1[3]);
+        }
+        else
+        {
+            H = int.Parse(splitedString1[0]);
+            M = int.Parse(splitedString1[1]);
+        }
+        if (splitedString2.Length == 4)
+        {
+            D += int.Parse(splitedString2[0]);
+            H += int.Parse(splitedString2[2]);
+            M += int.Parse(splitedString2[3]);
+        }
+        else
+        {
+            H += int.Parse(splitedString2[0]);
+            M += int.Parse(splitedString2[1]);
+        }
+        if (M >= 60)
+        {
+            H++;
+            M -= 60;
+        }
+        if (H >= 24)
+        {
+            D++;
+            H -= 24;
+        }
+        if (D > 0) Console.WriteLine("{0}::{1}:{2:d2}", D, H, M);
+        else Console.WriteLine("{0}:{1:d2}", H, M);
+    }
+}

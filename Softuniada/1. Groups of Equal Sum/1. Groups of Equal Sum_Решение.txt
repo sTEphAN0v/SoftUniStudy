@@ -1,0 +1,52 @@
+using System;
+
+class Temp
+{
+    static void Main()
+    {
+        int x1 = int.Parse(Console.ReadLine());
+        int x2 = int.Parse(Console.ReadLine());
+        int x3 = int.Parse(Console.ReadLine());
+        int x4 = int.Parse(Console.ReadLine());
+        bool isHaveDecision = false;
+        int result = 0;
+
+        if (x1 + x2 == x3 + x4)
+        {
+            result = x1 + x2;
+            isHaveDecision = true;
+        }
+        if (x1 + x3 == x2 + x4)
+        {
+            result = x1 + x3;
+            isHaveDecision = true;
+        }
+        if (x1 + x4 == x2 + x3)
+        {
+            result = x1 + x4;
+            isHaveDecision = true;
+        }
+        if (x1 == x2 + x3 + x4)
+        {
+            result = x1;
+            isHaveDecision = true;
+        }
+        if (x2 == x1 + x3 + x4)
+        {
+            result = x2;
+            isHaveDecision = true;
+        }
+        if (x3 == x1 + x2 + x4)
+        {
+            result = x3;
+            isHaveDecision = true;
+        }
+        if (x4 == x1 + x2 + x3)
+        {
+            result = x4;
+            isHaveDecision = true;
+        }
+        if (isHaveDecision) Console.WriteLine("Yes\n{0}", result);
+        else Console.WriteLine("No");
+    }
+}

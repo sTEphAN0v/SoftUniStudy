@@ -1,0 +1,60 @@
+using System;
+
+class Temp2
+{
+    static void Main()
+    {
+        int number = int.Parse(Console.ReadLine());
+        char[,,] cube = new char[number, number, number];
+        int starsCounter = 0;
+        string stars = "";
+        for (int x = 0; x < number; x++)
+        {
+            int i = 0;
+            char[] imput = Console.ReadLine().ToCharArray();
+            for (int y = 0; y < number; y++)
+            {
+                for (int z = 0; z < number; z++)
+                {
+                    while (imput[i] == ' ' || imput[i] == '|') i++;
+                    if (imput[i] != ' ' && imput[i] != '|')
+                    {
+                        cube[x, y, z] = imput[i];
+                        i++;
+                    }
+                }
+            }
+        }
+        for (int x = 1; x < number - 1; x++)
+        {
+            for (int y = 1; y < number - 1; y++)
+            {
+                for (int z = 1; z < number - 1; z++)
+                {
+                    if (cube[x, y, z] == cube[x - 1, y, z] && cube[x, y, z] == cube[x + 1, y, z] && cube[x, y, z] == cube[x, y - 1, z] && cube[x, y, z] == cube[x, y + 1, z] && cube[x, y, z] == cube[x, y, z - 1] && cube[x, y, z] == cube[x, y, z + 1])
+                    {
+                        stars = stars + cube[x, y, z];
+                        starsCounter++;
+                    }
+                }
+            }
+        }
+        char[] starsSplit = stars.ToCharArray();
+        Array.Sort(starsSplit);
+        Console.WriteLine(starsCounter);
+        int counter = 1;
+        for (int i = 0; i < starsSplit.Length - 1; i++)
+        {
+            if (starsSplit[i] == starsSplit[i+1])
+            {
+                counter++;
+            }
+            else
+            {
+                Console.WriteLine("{0} -> {1}", starsSplit[i], counter);
+                counter = 1;
+            }
+        }
+        if (starsSplit.Length > 0) Console.WriteLine("{0} -> {1}", starsSplit[starsSplit.Length - 1], counter);
+    }
+}
