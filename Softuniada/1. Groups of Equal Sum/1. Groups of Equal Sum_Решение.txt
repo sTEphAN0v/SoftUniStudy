@@ -50,4 +50,3 @@ class Temp
         else Console.WriteLine("No");
     }
 }
-dfasdasdasdasd
